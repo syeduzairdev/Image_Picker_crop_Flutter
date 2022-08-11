@@ -2,14 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:practice/Screens/homepage/widget/DisplayPictureWiget.dart';
 
-class homepage extends StatefulWidget {
-  const homepage({Key? key}) : super(key: key);
+class widgetParent extends StatefulWidget {
+  const widgetParent({Key? key}) : super(key: key);
 
   @override
-  State<homepage> createState() => _homepageState();
+  State<widgetParent> createState() => _widgetParentState();
 }
 
-class _homepageState extends State<homepage> {
+class _widgetParentState extends State<widgetParent> {
   bool _isImageUploading = false;
   @override
   Widget build(BuildContext context) {

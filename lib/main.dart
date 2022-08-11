@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice/Screens/homepage/home.dart';
+import 'package:practice/Screens/homepage/widgetParent.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: homepage());
+          home: widgetParent());
     });
   }
 }
