@@ -1,23 +1,35 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:practice/widggets/divider_widget.dart';
 import 'package:practice/widggets/liosttile_widget.dart';
 import 'package:sizer/sizer.dart';
 
+typedef void FileCallback(File val);
+
 class DisplayPictureWiget extends StatefulWidget {
+  //these all are the parameters that are passed into the widget
+  final FileCallback? OnSuccessFile;
+  final double? height;
+  final double? width;
   final String? defaultimage;
   const DisplayPictureWiget({
     Key? key,
     this.defaultimage = "", // optional with a default value,
+    this.height,
+    this.width,
+    this.OnSuccessFile,
   }) : super(key: key);
   @override
   State<DisplayPictureWiget> createState() => DisplayPictureWidgetState();
 }
 
 class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
-  late final VoidCallback Selected;
+  //these all are the variables that are used in the widget
+  late final FileCallback? OnSuccessFile;
   File? profileimage;
   File? croppedProfile;
   File? Profile;
@@ -40,7 +52,7 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
     }
   }
 
-  /// Crop Image
+  /// Crop Image and set it to image
   Future<void> _cropImage(imge) async {
     final croppedImage = await ImageCropper().cropImage(
       sourcePath: imge.toString(),
@@ -49,9 +61,13 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
     );
     if (croppedImage != null) {
       croppedProfile = File(croppedImage.path);
+      print("This is Croper Image${croppedProfile}");
+      // OnSuccessFile!(croppedProfile!);
       setState(() {});
     } else {
       croppedProfile = Profile;
+      print("This is Image Picker Image${croppedProfile}");
+      //  OnSuccessFile!(croppedProfile!);
       setState(() {});
     }
   }
@@ -61,6 +77,7 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
     BuildContext context,
   ) {
     return Center(
+        //check if the image is null then show the default image
         child: widget.defaultimage!.isNotEmpty
             ? InkWell(
                 onTap: () {
@@ -71,9 +88,8 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                     listtile_widget(
                       onClickAction: () {
                         setState(() {
+                          widget.defaultimage == '';
                           croppedProfile = null;
-                          imageCache?.clear();
-                          imageCache?.clearLiveImages();
                         });
                       },
                       tiletext: 'Remove Image',
@@ -85,8 +101,8 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                 child: ClipOval(
                     child: Image.network(
                   widget.defaultimage!,
-                  height: 10.h,
-                  width: 20.w,
+                  height: this.widget.height,
+                  width: this.widget.width,
                   fit: BoxFit.cover,
                 )),
               )
@@ -102,9 +118,8 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                         listtile_widget(
                           onClickAction: () {
                             setState(() {
+                              widget.defaultimage == '';
                               croppedProfile = null;
-                              imageCache?.clear();
-                              imageCache?.clearLiveImages();
                             });
                           },
                           tiletext: 'Remove Image',
@@ -117,16 +132,16 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                         ClipOval(
                           child: Image.file(
                             croppedProfile!,
-                            height: 10.h,
-                            width: 20.w,
+                            height: this.widget.height,
+                            width: this.widget.width,
                             fit: BoxFit.cover,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 45, top: 40),
+                          padding: const EdgeInsets.only(left: 90, top: 80),
                           child: Icon(
                             Icons.camera_alt,
-                            color: Colors.red,
+                            color: Colors.green,
                           ),
                         ),
                       ],
@@ -138,8 +153,8 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                       _onButtonPressed(context, 35.h, SizedBox(), SizedBox());
                     },
                     child: Container(
-                      height: 12.h,
-                      width: 24.w,
+                      height: this.widget.height,
+                      width: this.widget.width,
                       child: Icon(
                         Icons.camera_alt,
                         color: Color(0xff8A8D9F),
@@ -152,6 +167,7 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                     )));
   }
 
+// this is the function that is called when the button is pressed and it opens the dialog
   _onButtonPressed(
     BuildContext context,
     hght,
@@ -229,28 +245,4 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
           );
         });
   }
-
-  // show image selection action options
-  // _showImageSelectionOptions(
-  //     BuildContext context, SelectionType selectionType) {
-  //   // show selection option Camera | Gallery
-  //   // show selection option Camera | Gallery | Remove Image
-  //   // now this function shoulw be responsible for showing the bottom sheet based on the selection type
-  //   switch (selectionType) {
-  //     case SelectionType.cameraAndGallery:
-  //       // return bottom sheet with camera and gallery menu
-
-  //       break;
-  //     case SelectionType.cameraGalleryAndRemovePhoto:
-  //       // return bottom sheet with camera gallery and remove photo options
-
-  //       break;
-  //     default:
-  //   }
-  // }
 }
-
-// enum SelectionType {
-//   cameraAndGallery,
-//   cameraGalleryAndRemovePhoto,
-// }

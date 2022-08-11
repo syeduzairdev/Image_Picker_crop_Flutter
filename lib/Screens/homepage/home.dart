@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice/Screens/homepage/widget/camera.dart';
+import 'package:sizer/sizer.dart';
 
 class homepage extends StatefulWidget {
   const homepage({Key? key}) : super(key: key);
@@ -18,9 +19,14 @@ class _homepageState extends State<homepage> {
           child: Column(
             children: [
               DisplayPictureWiget(
-                  //   defaultimage:
-                  //      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
-                  )
+                OnSuccessFile: (val) {
+                  print("ddddddddddddddddddd${val}");
+                },
+                height: 18.h,
+                width: 34.w,
+//defaultimage:
+                //      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
+              )
             ],
           ),
         ),

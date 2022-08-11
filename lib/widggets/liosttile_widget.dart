@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class listtile_widget extends StatefulWidget {
+  //these are the parameters that are passed into the widget
   final onClickAction;
   final String tiletext;
   final IconData icon;
@@ -19,6 +20,7 @@ class listtile_widget extends StatefulWidget {
 class _listtile_widgetState extends State<listtile_widget> {
   @override
   Widget build(BuildContext context) {
+    //this is the widget that is returned
     return ListTile(
         leading: Icon(
           widget.icon,
