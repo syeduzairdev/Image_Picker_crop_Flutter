@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\AL- HameedComputer\\Desktop\\practice\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\layout\\custom_dialog.xml",
+        "source": "C:\\Users\\AL- HameedComputer\\.gradle\\caches\\transforms-2\\files-2.1\\8e86e615f21ac3758e97e94e18045107\\core-1.8.0\\res\\layout\\custom_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\AL- HameedComputer\\Desktop\\practice\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\AL- HameedComputer\\.gradle\\caches\\transforms-2\\files-2.1\\8e86e615f21ac3758e97e94e18045107\\core-1.8.0\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\AL- HameedComputer\\Desktop\\practice\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\AL- HameedComputer\\.gradle\\caches\\transforms-2\\files-2.1\\8e86e615f21ac3758e97e94e18045107\\core-1.8.0\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\AL- HameedComputer\\Desktop\\practice\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\layout\\notification_action.xml",
+        "source": "C:\\Users\\AL- HameedComputer\\.gradle\\caches\\transforms-2\\files-2.1\\8e86e615f21ac3758e97e94e18045107\\core-1.8.0\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\AL- HameedComputer\\Desktop\\practice\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\AL- HameedComputer\\.gradle\\caches\\transforms-2\\files-2.1\\8e86e615f21ac3758e97e94e18045107\\core-1.8.0\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\AL- HameedComputer\\Desktop\\practice\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\AL- HameedComputer\\.gradle\\caches\\transforms-2\\files-2.1\\8e86e615f21ac3758e97e94e18045107\\core-1.8.0\\res\\layout\\notification_template_part_chronometer.xml"
+    }
+]
