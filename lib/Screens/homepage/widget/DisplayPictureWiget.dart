@@ -2,13 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:practice/widggets/Profile_Change_Icon.dart';
-import 'package:practice/widggets/bottomSheet_Icons.dart';
+import 'package:rnetcapp/widgets/BottomSheetIcons.dart';
+import 'package:rnetcapp/widgets/Profile_Change_Icon.dart';
+import 'package:rnetcapp/widgets/cacheNetworkImage.dart';
 import 'package:sizer/sizer.dart';
 
 typedef void FileCallback(File? image);
 
 class DisplayPictureWiget extends StatefulWidget {
+  // ignore: non_constant_identifier_names
   final FileCallback OnPictureChanged;
   final double height;
   final double width;
@@ -20,6 +22,7 @@ class DisplayPictureWiget extends StatefulWidget {
       this.defaultimage = "",
       required this.height,
       required this.width,
+      // ignore: non_constant_identifier_names
       required this.OnPictureChanged,
       required this.isLoading})
       : super(key: key);
@@ -31,7 +34,9 @@ class DisplayPictureWiget extends StatefulWidget {
 class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
   File? profileimage;
   File? croppedProfile;
+  // ignore: non_constant_identifier_names
   File? Profile;
+  // ignore: non_constant_identifier_names
   File? CroppedFile;
   String?
       _defaultImage; // copy of parameter defaultImage so that we can change it
@@ -54,6 +59,7 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
       _cropImage(profileimage.path);
       setState(() {
         Profile = File(profileimage.path);
+        _defaultImage = "";
         print(Profile);
       });
     }
@@ -73,7 +79,9 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
     } else {
       // chosen original image
       croppedProfile = Profile;
-      setState(() {});
+      setState(() {
+        _defaultImage = "";
+      });
     }
     // pass this chosen image on callback so that parent widget can handle it
     widget.OnPictureChanged(croppedProfile);
@@ -118,14 +126,22 @@ class DisplayPictureWidgetState extends State<DisplayPictureWiget> {
                           // child: widget.defaultimage!.startsWith('http')
                           child: _defaultImage!.startsWith('http')
                               ? ClipOval(
-                                  child: Image.network(
-                                    // widget.defaultimage!,
-                                    _defaultImage!,
-                                    height: widget.height,
-                                    width: widget.width,
-                                    fit: BoxFit.cover,
+                                  child: Container(
+                                  height: widget.height,
+                                  width: widget.width,
+                                  child: CacheNetworkImage(
+                                    imageUrl: widget.defaultimage,
                                   ),
                                 )
+
+                                  // Image.network(
+                                  //   // widget.defaultimage!,
+                                  //   _defaultImage!,
+                                  //   height: widget.height,
+                                  //   width: widget.width,
+                                  //   fit: BoxFit.cover,
+                                  // ),
+                                  )
                               : ClipOval(
                                   child: Image.asset(
                                     // widget.defaultimage!,
